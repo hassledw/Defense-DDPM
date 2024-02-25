@@ -25,18 +25,16 @@ class BirdDataset(Dataset):
 
         self.transformations = transformation
         self.im_paths = sorted(glob(f"{root}/{data}/*/*"))
-        self.cls_names, self.cls_counts, count, data_count = {}, {}, 0, 0
+        self.cls_names, count = {}, 0
 
         # for all the image paths, populate the dictionary of class names
         for im_path in self.im_paths:
             class_name = self.get_class(im_path)
+
             if class_name not in self.cls_names: 
-                self.cls_names[class_name] = count 
-                self.cls_counts[class_name] = 1 
+                self.cls_names[class_name] = count
                 count += 1
-            else: 
-                self.cls_counts[class_name] += 1
-        
+                
     def get_class(self, path):
         '''
         Given a class path, return the class name.
