@@ -1,4 +1,8 @@
 # GenAI-ImageDenoise
+### Developers
+* Daniel Hassler
+* Matthew Dim
+* Austin Burcham
 
 ## Introduction
 Adversarial attacks like FGSM, PGD, or JSMA on deep learning image classifiers pose a threat to the reliability of image classification models by subtly altering the source image, causing intentional misclassifications. These modifications, which can be imperceptible, have the potential to compromise the security of sensitive or classified information, resulting in adverse consequences. For example, running an FGSM attack on a face recognition application can change the label of the face, with minimal perturbations, causing an adversary to access sensitive information of someone else.
@@ -11,4 +15,7 @@ Our goal is to create a robust defense against these challenging attacks on all 
 * [Birds 525 Species- Image Classification](https://www.kaggle.com/datasets/gpiosenka/100-bird-species?resource=download): A collection of ~90,000 labeled bird images. 525 species, 84635 train, 2625 test, 2625 validation images of dimension 224X224X3 jpg.
 
 ## Repo Contents
-* **birdclassifier.py**: is the [Rexnet](https://huggingface.co/docs/timm/en/models/rexnet) classifier fine-tuning model code for the birds dataset. 
+* **analysis.ipynb**: our data, attack, and defense visualization notebook
+* **attacks.py**: our PyTorch attack framework that automates the process of attacking a dataset and saving to respective folders.
+* **birdclassifier.py**: is the [Rexnet](https://huggingface.co/docs/timm/en/models/rexnet) classifier fine-tuning model code for the birds dataset.
+* **saved_models**: a folder containing the weights for fine-tuned classifiers on our datasets.
