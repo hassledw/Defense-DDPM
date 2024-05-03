@@ -1,4 +1,4 @@
-# GenAI-ImageDenoise
+# Defense-DDPM to Denoise DL Adversarial Attacks
 ### Developers
 * Daniel Hassler (hassledw@vt.edu)
 * Matthew Dim (matthewdim@vt.edu)
@@ -6,6 +6,12 @@
 
 ## Introduction
 Deep learning adversarial attacks such as Fast Gradient Sign Method (FGSM) or Projected Gradient Descent (PGD) are popular white-box attack frameworks that can severely damage the trustworthiness of any machine learning classifier. In this method, we propose Defense-DDPM, a black-box defense strategy that leverages the capabilities of Denoising Diffusion Probabilistic Models (DDPM) to iteratively refine denoised images. This strategy utilizes NL-Means and Wavelet Transform as preprocessing techniques before being fed into a DDPM, enhancing the denoising process.
+
+<p align="center">
+<img src="Defense-DDPM-NL-means.png"
+     alt="Defense-DDPM"
+     style="float: center; margin-right: 4px;" />
+</p>     
 
 ## Datasets
 * [Birds 525 Species- Image Classification](https://www.kaggle.com/datasets/gpiosenka/100-bird-species?resource=download): A collection of ~90,000 labeled bird images. 525 species, 84635 train, 2625 test, 2625 validation images of dimension 224X224X3 jpg.
