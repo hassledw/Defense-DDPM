@@ -1,1 +1,3 @@
 bird-data
+bird-data-defense-ddpm/unet/diffusion_pytorch_model.safetensors
+extra/ddpm-butterflies-128/unet/diffusion_pytorch_model.safetensors

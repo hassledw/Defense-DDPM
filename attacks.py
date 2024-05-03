@@ -6,13 +6,18 @@ from torch.utils.data import random_split, Dataset, DataLoader
 from PIL import Image
 import os
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 def load_model(model_path, num_classes):
     '''
     Returns the model given a saved path.
     '''
+    print("Loading Rexnet_150 Classification Model...")
     model = timm.create_model("rexnet_150", pretrained=False, num_classes=num_classes)
     model.load_state_dict(torch.load(model_path))
+    model.to(device)
     model.eval()
+
     return model
 
 def minmax_scaling_images(img_tensor):
@@ -66,6 +71,7 @@ def attack_images(attack, test_ds, test_dl, save_adv_image_folder):
     save_adv_image_folder: the folder in which to save the attacked image data.
     '''
     for idx, batch in enumerate(test_dl):
+        print(f"Attack Progress: {idx + 1}/{len(test_dl)}")
         images, labels = batch
         attacked_images_np = attack(minmax_scaling_images(images), labels)
         attacked_images = tensor_to_image(attacked_images_np)
@@ -93,7 +99,8 @@ if __name__ == "__main__":
     Example usecase.
     '''
     test_ds = BirdDataset("./bird-data", "test")
+    print("Loading Bird Data Into the DataLoader...")
     test_dl = DataLoader(test_ds, batch_size = 32, shuffle = False, num_workers = 4)
     model = load_model("./saved_models/birds_epoch7_val_loss0.092.pth", 525)
 
-    attack_images(ta.FGSM(model, eps=0.05), test_ds, test_dl, "./bird-data/FGSM05-test")
+    attack_images(ta.FGSM(model, eps=0.25), test_ds, test_dl, "./bird-data/FGSM25-test")

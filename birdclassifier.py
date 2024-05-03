@@ -22,7 +22,7 @@ class BirdDataset(Dataset):
         '''
         mean, std, im_size = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225], 224
         transformation = T.Compose([T.Resize((im_size, im_size)), T.ToTensor(), T.Normalize(mean = mean, std = std)])
-
+        #transformation = T.Compose([T.ToTensor(), T.Normalize(mean = mean, std = std)])
         self.transformations = transformation
         self.im_paths = sorted(glob(f"{root}/{data}/*/*"))
         self.cls_names, count = {}, 0
